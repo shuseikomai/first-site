@@ -272,6 +272,18 @@ footer{
   font-size:.95rem;
 }
 
+.p5Container{
+  margin-top:.75rem;
+  border:1px solid var(--border);
+  border-radius:var(--radius2);
+  overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+  box-shadow:0 10px 22px rgba(2,6,23,.06);
+}
+.p5Container canvas{
+  display:block;
+}
+
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
   *, *::before, *::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
