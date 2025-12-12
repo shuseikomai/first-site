@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ピックルボール入門｜ルールとプレーが分かる</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
   <a class="skip" href="#content">本文へスキップ</a>
@@ -46,10 +47,22 @@
           </div>
         </div>
         <div class="imgCard">
-          <figure>
-            <img src="pickleballcourt.png" alt="ピックルボールのコート図" loading="lazy">
-            <figcaption>コートはテニスより小さく、ネット前に「キッチン（ノンボレーゾーン）」があります。</figcaption>
-          </figure>
+          <div class="heroMedia">
+            <figure class="heroPhoto">
+              <span class="mediaBadge"><span class="mediaBadgeDot" aria-hidden="true"></span>Pickleball</span>
+              <picture>
+                <source srcset="https://source.unsplash.com/1200x900/?pickleball" />
+                <img src="pickleballcourt.png" alt="ピックルボールをイメージできる写真（読み込めない場合はコート図を表示）" loading="lazy" decoding="async">
+              </picture>
+              <figcaption class="mediaCredit">
+                画像：<a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash</a>（回線状況によりコート図にフォールバックします）
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="pickleballcourt.png" alt="ピックルボールのコート図" loading="lazy" decoding="async">
+              <figcaption>コートはテニスより小さく、ネット前に「キッチン（ノンボレーゾーン）」があります。</figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
