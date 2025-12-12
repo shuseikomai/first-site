@@ -3,21 +3,330 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Simple Site</title>
-  <style>
-    body { font-family: 'Hiragino Kaku Gothic Pro', sans-serif; background:#f4f4f8; color:#1f2041; margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh; }
-    main { text-align:center; padding:2rem; background:#fff; border-radius:18px; box-shadow:0 10px 25px rgba(25,34,82,.15); max-width:600px; }
-    h1 { margin:0 0 .5rem; font-size:clamp(2rem,4vw,3rem); }
-    p { margin:0 0 1rem; line-height:1.6; }
-    a { color:#0c63ff; }
-  </style>
+  <title>ピックルボール入門｜ルールとプレーが分かる</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <p>ようこそ、私の GitHub Pages サイトへ。</p>
-    <h1>初めてのシンプルなページ</h1>
-    <p>このページでは、自己紹介やプロジェクト、リンクなどを紹介できます。</p>
-    <p><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> へのリンクを追加するのも簡単です。</p>
+  <a class="skip" href="#content">本文へスキップ</a>
+  <header>
+    <div class="wrap">
+      <nav class="nav" aria-label="サイトナビゲーション">
+        <div class="brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span>ピックルボール入門</span>
+        </div>
+        <div class="navlinks">
+          <a href="#rules">ルール</a>
+          <a href="#how">プレーの仕方</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="wrap">
+    <section class="hero">
+      <div class="heroGrid">
+        <div>
+          <p class="kicker">Beginner Friendly</p>
+          <h1>ピックルボールのルールを、誰でも分かる言葉で</h1>
+          <p class="lead">ピックルボールは「テニス・卓球・バドミントンの“いいとこ取り”」のようなラケットスポーツ。コートが小さめで、ラリーが続きやすいのが特徴です。</p>
+          <div class="pillRow" aria-label="このページで分かること">
+            <span class="pill">5分で概要</span>
+            <span class="pill">サーブと得点</span>
+            <span class="pill">ダブルバウンド</span>
+            <span class="pill">キッチン（NVZ）</span>
+          </div>
+          <div class="note">
+            <strong>まず押さえる3つ</strong>
+            <ul>
+              <li><strong>サーブは下から</strong>（アンダーサーブ）。</li>
+              <li><strong>最初の2打はバウンド必須</strong>（ダブルバウンドルール）。</li>
+              <li><strong>ネット前のゾーンではボレー禁止</strong>（キッチン／ノンボレーゾーン）。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="imgCard">
+          <figure>
+            <img src="pickleballcourt.png" alt="ピックルボールのコート図" loading="lazy">
+            <figcaption>コートはテニスより小さく、ネット前に「キッチン（ノンボレーゾーン）」があります。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="what" class="panel">
+      <h2>ピックルボールってどんなスポーツ？</h2>
+      <div class="grid2">
+        <div>
+          <h3>使うもの</h3>
+          <ul>
+            <li><strong>パドル</strong>：卓球ラケットを大きくしたような板状のラケット。</li>
+            <li><strong>ボール</strong>：穴あきのプラスチックボール（室内用・屋外用があります）。</li>
+            <li><strong>ネットとコート</strong>：テニスより小さめのコートでプレー。</li>
+          </ul>
+        </div>
+        <div>
+          <h3>人数</h3>
+          <ul>
+            <li><strong>ダブルス</strong>（2対2）が主流。はじめてでもラリーが続きやすいです。</li>
+            <li><strong>シングルス</strong>（1対1）もできます。</li>
+          </ul>
+          <p class="muted">このページは基本のダブルスを中心に説明します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="panel">
+      <h2>ルール（これだけ読めばプレーできる）</h2>
+      <p class="muted">「次のルール」を押すたびに、1つずつ表示します。</p>
+
+      <div class="controls" aria-label="ルールを表示する操作">
+        <button type="button" class="btn" id="ruleNext">次のルールを表示</button>
+        <button type="button" class="btnSecondary" id="ruleReset" disabled>最初から</button>
+      </div>
+
+      <div class="ruleCard" id="ruleCard" role="status" aria-live="polite" aria-atomic="true">
+        <p class="muted">まずは <strong>「次のルールを表示」</strong> を押してください。</p>
+        <div class="ruleMeta">
+          <span>ショートカット：</span>
+          <span class="kbd">N</span><span class="muted">次へ</span>
+          <span class="kbd">R</span><span class="muted">リセット</span>
+        </div>
+      </div>
+
+      <noscript>
+        <div class="note">
+          <strong>JavaScriptが無効のため、ルールを一覧で表示します。</strong>
+          <h3>1) 目的：相手コートに返して得点する</h3>
+          <p>相手が返せない、または反則をすると得点になります。</p>
+
+          <h3>2) 得点の基本：サーブ側だけが点を取れる</h3>
+          <ul>
+            <li>ラリーに勝っても、レシーブ側（受ける側）は点が入りません。代わりにサーブ権が移ります。</li>
+            <li>一般的に11点先取で勝ち（多くは2点差が必要）。※ローカルルールで変わる場合があります。</li>
+          </ul>
+
+          <h3>3) サーブ：下から打って、斜めのサービスコートへ</h3>
+          <ul>
+            <li>腰より下の位置で、下から（アンダー）打ちます。</li>
+            <li>自分の右／左のサービスコートから、斜め向かいのサービスコートに入れます。</li>
+            <li>基本は1回だけ打てます（やり直しは通常なし）。</li>
+          </ul>
+
+          <h3>4) ダブルバウンドルール：最初の2回はバウンド必須</h3>
+          <ul>
+            <li>サーブを受けた側は、一度バウンドさせて返します（レシーブはノーバウンドで打たない）。</li>
+            <li>次にサーブ側も、返ってきたボールを一度バウンドさせて返します。</li>
+            <li>この2回のバウンドが終わったら、以降はバウンドしても／しなくてもOKです。</li>
+          </ul>
+
+          <h3>5) キッチン（ノンボレーゾーン）：ネット前ではボレー禁止</h3>
+          <ul>
+            <li>ネット前のゾーン（キッチン）内に立ったままボレー（ノーバウンドで打つこと）はできません。</li>
+            <li>キッチン内のボールを返すこと自体はOKですが、バウンドしてから打ちます。</li>
+            <li>ボレーした勢いでキッチンに足が入るのも反則です。</li>
+          </ul>
+        </div>
+      </noscript>
+    </section>
+
+    <section id="how" class="panel">
+      <h2>プレーの流れ（ダブルスをイメージ）</h2>
+      <ol>
+        <li><strong>サーブ</strong>：サーブ側が斜めに入れる。</li>
+        <li><strong>レシーブ</strong>：受けた側は必ずバウンド後に返す。</li>
+        <li><strong>サードショット</strong>：サーブ側もバウンド後に返す（ここがダブルバウンドの2回目）。</li>
+        <li><strong>ラリー</strong>：以降はバウンドでもボレーでもOK（ただしキッチンではボレー禁止）。</li>
+      </ol>
+      <div class="note">
+        <strong>初心者がラリーを続けるコツ</strong>
+        <ul>
+          <li>まずは<strong>高めに返す</strong>（ネットミスが減ります）。</li>
+          <li>強打より<strong>コートに入れる</strong>を優先。</li>
+          <li>ボールの落ち際まで待って、<strong>慌てず当てる</strong>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faults" class="panel">
+      <h2>よくある反則・ミス（これを避けると上達が早い）</h2>
+      <table aria-label="よくある反則と説明">
+        <thead>
+          <tr>
+            <th style="width:32%">よくある反則</th>
+            <th>やさしい説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>キッチンでボレー</td>
+            <td>ネット前のゾーンに立った状態で、バウンド前に打つと反則（勢いで足が入るのもNG）。</td>
+          </tr>
+          <tr>
+            <td>ダブルバウンド違反</td>
+            <td>サーブ直後の2打（レシーブとその次）は、必ずバウンドさせてから打つ必要があります。</td>
+          </tr>
+          <tr>
+            <td>アウト</td>
+            <td>相手コートに入らずラインの外に出る（ラインは基本「イン」）。</td>
+          </tr>
+          <tr>
+            <td>ネット</td>
+            <td>ボールがネットに当たって越えない／ネットの下を通る。</td>
+          </tr>
+          <tr>
+            <td>サーブが入らない</td>
+            <td>斜めのサービスコートに入らない、下から打てていない等。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted">※大会や団体により細部が異なる場合があります。練習会・クラブのルールに合わせるのが確実です。</p>
+    </section>
+
+    <section id="tips" class="panel">
+      <h2>はじめ方（これだけ準備すればOK）</h2>
+      <div class="grid2">
+        <div>
+          <h3>持ち物</h3>
+          <ul>
+            <li>動きやすい服</li>
+            <li>室内／屋外に合ったシューズ</li>
+            <li>飲み物、タオル</li>
+            <li>（あれば）パドル</li>
+          </ul>
+        </div>
+        <div>
+          <h3>最初に覚えるショット</h3>
+          <ul>
+            <li><strong>サーブ</strong>：まずは確実に入れる。</li>
+            <li><strong>リターン</strong>：大きく深く返す。</li>
+            <li><strong>ディンク</strong>：キッチン付近にふわっと落とす（慣れてきたら）。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <strong>次に追加できる内容</strong>：世界・日本での普及状況、用具の選び方、練習メニュー、戦術（サードショットドロップ等）、ルールの詳細版（コール・スコアの言い方）など。
+        追加したい方向性があれば言ってください。
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <p>このページは「初心者が最初の1回を安心してプレーできる」ことを目的に、基本ルールをかみくだいてまとめています。</p>
+    </footer>
   </main>
+
+  <script>
+    (() => {
+      const rules = [
+        {
+          title: "1) 目的：相手コートに返して得点する",
+          html: "<p>相手が返せない、または反則をすると得点になります。</p>",
+        },
+        {
+          title: "2) 得点の基本：サーブ側だけが点を取れる",
+          html: `
+            <ul>
+              <li>ラリーに勝っても、<strong>レシーブ側</strong>（受ける側）は点が入りません。代わりに<strong>サーブ権</strong>が移ります。</li>
+              <li>一般的に<strong>11点先取</strong>で勝ち（多くは<strong>2点差</strong>が必要）。※ローカルルールで変わる場合があります。</li>
+            </ul>
+          `,
+        },
+        {
+          title: "3) サーブ：下から打って、斜めのサービスコートへ",
+          html: `
+            <ul>
+              <li><strong>腰より下</strong>の位置で、<strong>下から（アンダー）</strong>打ちます。</li>
+              <li>自分の右／左のサービスコートから、<strong>斜め向かい</strong>のサービスコートに入れます。</li>
+              <li>基本は<strong>1回だけ</strong>打てます（やり直しは通常なし）。</li>
+            </ul>
+            <div class="callout"><strong>覚え方：</strong>「下から・斜めに・ネットは越える」。</div>
+          `,
+        },
+        {
+          title: "4) ダブルバウンドルール：最初の2回はバウンド必須",
+          html: `
+            <ul>
+              <li>サーブを受けた側は、<strong>一度バウンド</strong>させて返します（レシーブはノーバウンドで打たない）。</li>
+              <li>次にサーブ側も、返ってきたボールを<strong>一度バウンド</strong>させて返します。</li>
+              <li>この<strong>2回のバウンド</strong>が終わったら、以降は<strong>バウンドしても／しなくても</strong>OKです。</li>
+            </ul>
+          `,
+        },
+        {
+          title: "5) キッチン（ノンボレーゾーン）：ネット前ではボレー禁止",
+          html: `
+            <ul>
+              <li>ネット前のゾーン（キッチン）内に<strong>立ったままボレー</strong>（ノーバウンドで打つこと）はできません。</li>
+              <li>キッチン内のボールを返すこと自体はOKですが、<strong>バウンドしてから</strong>打ちます。</li>
+              <li>ボレーした勢いでキッチンに<strong>足が入る</strong>のも反則です。</li>
+            </ul>
+          `,
+        },
+      ];
+
+      const nextButton = document.getElementById("ruleNext");
+      const resetButton = document.getElementById("ruleReset");
+      const card = document.getElementById("ruleCard");
+
+      if (!nextButton || !resetButton || !card) return;
+
+      let index = -1;
+
+      function renderCurrent() {
+        if (index < 0) {
+          card.innerHTML = `
+            <p class="muted">まずは <strong>「次のルールを表示」</strong> を押してください。</p>
+            <div class="ruleMeta">
+              <span>ショートカット：</span>
+              <span class="kbd">N</span><span class="muted">次へ</span>
+              <span class="kbd">R</span><span class="muted">リセット</span>
+            </div>
+          `;
+          resetButton.disabled = true;
+          return;
+        }
+
+        if (index >= rules.length) {
+          card.innerHTML = `
+            <p class="ruleTitle"><strong>全部表示しました。</strong></p>
+            <p class="muted">もう一度見る場合は「最初から」を押してください。</p>
+            <div class="ruleMeta"><span>進捗：</span><strong>${rules.length} / ${rules.length}</strong></div>
+          `;
+          resetButton.disabled = false;
+          return;
+        }
+
+        const rule = rules[index];
+        card.innerHTML = `
+          <p class="ruleTitle"><strong>${rule.title}</strong></p>
+          ${rule.html}
+          <div class="ruleMeta"><span>進捗：</span><strong>${index + 1} / ${rules.length}</strong></div>
+        `;
+        resetButton.disabled = false;
+      }
+
+      function next() {
+        index += 1;
+        renderCurrent();
+      }
+
+      function reset() {
+        index = -1;
+        renderCurrent();
+      }
+
+      nextButton.addEventListener("click", next);
+      resetButton.addEventListener("click", reset);
+      document.addEventListener("keydown", (event) => {
+        if (event.target && (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA")) return;
+        if (event.isComposing) return;
+        const key = event.key.toLowerCase();
+        if (key === "n") next();
+        if (key === "r") reset();
+      });
+
+      renderCurrent();
+    })();
+  </script>
 </body>
 </html>
